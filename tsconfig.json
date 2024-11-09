@@ -1,0 +1,7 @@
+{
+    "compilerOptions": {
+      "allowJs": true, // Allows TypeScript to include JavaScript files
+      "checkJs": false // Disables type-checking for JavaScript files like .jsx
+    },
+    "include": ["src"]
+  }

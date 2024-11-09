@@ -1,0 +1,95 @@
+{
+    "layers": [
+        {
+            "id": "GPTLanguageModel",
+            "label": "GPTLanguageModel",
+            "level": 0,
+            "children": [
+                {
+                    "id": "1",
+                    "label": "Token Embedding",
+                    "level": 1,
+                    "color": "rgba(255, 182, 193, 0.6)",
+                    "layout": "vertical"
+                },
+                {
+                    "id": "2",
+                    "label": "Positional Embedding",
+                    "level": 1,
+                    "color": "rgba(51, 76, 129, 0.6)",
+                    "layout": "vertical"
+                },
+                {
+                    "id": "3",
+                    "label": "Transformer Blocks",
+                    "level": 1,
+                    "color": "rgba(34, 139, 34, 0.6)",
+                    "layout": "vertical",
+                    "children": [
+                        {
+                            "id": "3-1",
+                            "label": "Transformer Block",
+                            "level": 2,
+                            "color": "rgba(213, 184, 170, 0.6)",
+                            "layout": "vertical",
+                            "children": [
+                                {
+                                    "id": "3-1-1",
+                                    "label": "LayerNorm before Attention",
+                                    "level": 3,
+                                    "color": "rgba(32, 56, 136, 0.6)",
+                                    "layout": "vertical"
+                                },
+                                {
+                                    "id": "3-1-2",
+                                    "label": "Multi-Head Attention",
+                                    "level": 3,
+                                    "color": "rgba(167, 210, 228, 0.6)",
+                                    "layout": "vertical",
+                                    "children": [
+                                        {
+                                            "id": "3-1-2-1",
+                                            "label": "Attention Head",
+                                            "level": 4,
+                                            "color": "rgba(81, 141, 139, 0.6)",
+                                            "layout": "horizontal"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "3-1-3",
+                                    "label": "LayerNorm before FeedForward",
+                                    "level": 3,
+                                    "color": "rgba(32, 56, 136, 0.6)",
+                                    "layout": "vertical"
+                                },
+                                {
+                                    "id": "3-1-4",
+                                    "label": "FeedForward Network",
+                                    "level": 3,
+                                    "color": "rgba(245, 215, 163, 0.6)",
+                                    "layout": "vertical"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "4",
+                    "label": "Final LayerNorm",
+                    "level": 1,
+                    "color": "rgba(32, 56, 136, 0.6)",
+                    "layout": "vertical"
+                },
+                {
+                    "id": "5",
+                    "label": "Output Linear Layer",
+                    "level": 1,
+                    "color": "rgba(170, 51, 121, 0.6)",
+                    "layout": "vertical"
+                }
+            ],
+            "color": "rgba(0, 0, 0, 0)"
+        }
+    ]
+}

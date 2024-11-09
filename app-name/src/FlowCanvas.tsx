@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+// @ts-ignore
+import NodeGraph from './NodeGraph';
 import {
   ReactFlow,
   Background,
@@ -8,46 +10,38 @@ import {
   useEdgesState,
   OnConnect,
   useReactFlow,
-  ReactFlowInstance,
 } from '@xyflow/react';
 
 import '@xyflow/react/dist/style.css';
 
 interface FlowCanvasProps {
-  nodes: any[];
-  edges: any[];
+  nodes: any[]; // You may want to replace `any` with a specific type
+  edges: any[]; // You may want to replace `any` with a specific type
   width: string;
+  jsonPath?: string;
+  canvasWidth?: number;
+  rootWidth?: number;
   onClick?: () => void;
   onDelete?: () => void;
 }
 
-// random color
-const getRandomColor = () => {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-};
-
-const FlowCanvas: React.FC<FlowCanvasProps> = ({ nodes, edges, width, onClick, onDelete }) => {
-  const [nodesState, setNodes, onNodesChange] = useNodesState(
-    nodes.map((node) => ({
-      ...node,
-      style: { backgroundColor: getRandomColor() },
-    }))
-  );
+const FlowCanvas: React.FC<FlowCanvasProps> = ({
+  nodes,
+  edges,
+  jsonPath = '/gpt_drawing_dictionary.json',
+  canvasWidth = 800,
+  rootWidth = 600,
+  width,
+  onClick,
+  onDelete,
+}) => {
+  const [nodesState, setNodes, onNodesChange] = useNodesState(nodes);
   const [edgesState, setEdges, onEdgesChange] = useEdgesState(edges);
   const { fitView } = useReactFlow();
 
   const onConnect: OnConnect = (connection) => setEdges((eds) => addEdge(connection, eds));
 
-  // fitView
-  const handleInit = (reactFlowInstance: ReactFlowInstance) => {
-    reactFlowInstance.fitView({ padding: 0.1 });
-  };
-
+  // Fit view on component mount or width change
   useEffect(() => {
     const timer = setTimeout(() => {
       fitView({ padding: 0.1 });
@@ -58,12 +52,15 @@ const FlowCanvas: React.FC<FlowCanvasProps> = ({ nodes, edges, width, onClick, o
 
   return (
     <div className="flow-canvas" style={{ width }} onClick={onClick}>
-      <button className="delete-button" onClick={(e) => { 
-        e.stopPropagation();
-        if (onDelete) {
-          onDelete();
-        }
-      }}>
+      <button
+        className="delete-button"
+        onClick={(e) => {
+          e.stopPropagation();
+          if (onDelete) {
+            onDelete();
+          }
+        }}
+      >
         ✕
       </button>
       <ReactFlow
@@ -72,8 +69,9 @@ const FlowCanvas: React.FC<FlowCanvasProps> = ({ nodes, edges, width, onClick, o
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
-        onInit={handleInit}  // init fitView
+        fitView
       >
+        <NodeGraph jsonPath={jsonPath} canvasWidth={canvasWidth} rootWidth={rootWidth} />
         <Background />
         <Controls />
       </ReactFlow>
