@@ -14,6 +14,8 @@ interface NodeGraphProps {
   jsonPath?: string;
   canvasWidth?: number;
   rootWidth?: number;
+  onDelete?: () => void; // 新增删除事件的回调
+  onClick?: () => void;  // 新增点击事件的回调
 }
 
 interface Layer {
@@ -24,7 +26,13 @@ interface Layer {
   children?: Layer[];
 }
 
-const NodeGraph: React.FC<NodeGraphProps> = ({ jsonPath = '/drawing_dictionary.json', canvasWidth = 800, rootWidth = 600 }) => {
+const NodeGraph: React.FC<NodeGraphProps> = ({
+  jsonPath = '/drawing_dictionary.json',
+  canvasWidth = 800,
+  rootWidth = 600,
+  onDelete,
+  onClick,
+}) => {
   const [nodes, setNodes] = useState<Node[]>([]);
   const [edges, setEdges] = useState<Edge[]>([]);
 
@@ -122,7 +130,21 @@ const NodeGraph: React.FC<NodeGraphProps> = ({ jsonPath = '/drawing_dictionary.j
   }, [jsonPath, canvasWidth, rootWidth]);
 
   return (
-    <div style={{ width: '100%', height: '100%' }}>
+    <div
+      style={{ width: '100%', height: '100%' }}
+      onClick={onClick} // 将点击事件绑定到容器
+    >
+      <button
+        className="delete-button"
+        onClick={(e) => {
+          e.stopPropagation(); // 防止事件冒泡触发容器的 onClick
+          if (onDelete) {
+            onDelete();
+          }
+        }}
+      >
+        ✕
+      </button>
       <ReactFlow nodes={nodes} edges={edges} fitView>
         <Background variant={BackgroundVariant.Dots} gap={16} size={1} />
         <Controls />

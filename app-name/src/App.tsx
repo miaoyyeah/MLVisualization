@@ -56,9 +56,9 @@ export default function App() {
           .map((flow) => (
             <ReactFlowProvider key={flow.id}>
               <FlowCanvas
-                nodes={flow.nodes}
-                edges={flow.edges}
-                width={selectedFlowId === flow.id || flows.length === 1 ? '100%' : '40%'}
+                jsonPath="/gpt_drawing_dictionary.json"
+                canvasWidth={selectedFlowId === flow.id || flows.length === 1 ? 1200 : 800}
+                rootWidth={600}
                 onClick={() => toggleFlowCanvasWidth(flow.id)} 
                 onDelete={() => handleDeleteFlow(flow.id)}
               />

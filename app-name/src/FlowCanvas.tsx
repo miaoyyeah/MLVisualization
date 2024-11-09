@@ -1,23 +1,12 @@
 import React, { useEffect } from 'react';
 // @ts-ignore
 import NodeGraph from './NodeGraph';
-import {
-  ReactFlow,
-  Background,
-  Controls,
-  addEdge,
-  useNodesState,
-  useEdgesState,
-  OnConnect,
-  useReactFlow,
-} from '@xyflow/react';
+import { addEdge, useNodesState, useEdgesState, OnConnect, useReactFlow } from '@xyflow/react';
 
 import '@xyflow/react/dist/style.css';
 
 interface FlowCanvasProps {
-  nodes: any[]; // You may want to replace `any` with a specific type
-  edges: any[]; // You may want to replace `any` with a specific type
-  width: string;
+  width: number | undefined;
   jsonPath?: string;
   canvasWidth?: number;
   rootWidth?: number;
@@ -26,20 +15,13 @@ interface FlowCanvasProps {
 }
 
 const FlowCanvas: React.FC<FlowCanvasProps> = ({
-  nodes,
-  edges,
   jsonPath = '/gpt_drawing_dictionary.json',
   canvasWidth = 800,
   rootWidth = 600,
-  width,
   onClick,
   onDelete,
 }) => {
-  const [nodesState, setNodes, onNodesChange] = useNodesState(nodes);
-  const [edgesState, setEdges, onEdgesChange] = useEdgesState(edges);
   const { fitView } = useReactFlow();
-
-  const onConnect: OnConnect = (connection) => setEdges((eds) => addEdge(connection, eds));
 
   // Fit view on component mount or width change
   useEffect(() => {
@@ -48,10 +30,10 @@ const FlowCanvas: React.FC<FlowCanvasProps> = ({
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [width, fitView]);
+  }, [canvasWidth, fitView]);
 
   return (
-    <div className="flow-canvas" style={{ width }} onClick={onClick}>
+    <div className="flow-canvas" style={{ width: canvasWidth ? `${canvasWidth}px` : '800px' }} onClick={onClick}>
       <button
         className="delete-button"
         onClick={(e) => {
@@ -63,18 +45,11 @@ const FlowCanvas: React.FC<FlowCanvasProps> = ({
       >
         ✕
       </button>
-      <ReactFlow
-        nodes={nodesState}
-        edges={edgesState}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        fitView
-      >
-        <NodeGraph jsonPath={jsonPath} canvasWidth={canvasWidth} rootWidth={rootWidth} />
-        <Background />
-        <Controls />
-      </ReactFlow>
+      <NodeGraph
+        jsonPath={jsonPath}
+        canvasWidth={canvasWidth}
+        rootWidth={rootWidth}
+      />
     </div>
   );
 };
