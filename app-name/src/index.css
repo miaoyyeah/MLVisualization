@@ -1,0 +1,81 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column; /* align column */
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+/* 浮动面板的样式 */
+.floating-panel-container {
+  width: 100%; /* 占满整行宽度 */
+  display: flex;
+  justify-content: center; /* 居中对齐 */
+  padding: 20px 0;
+  box-sizing: border-box;
+}
+
+.delete-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-color: #888; /* 灰色背景 */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+  background-color: #666; /* 鼠标悬停时变成深灰色 */
+}
+
+/* flows-container 样式，用于水平排列 FlowCanvas */
+.flows-container {
+  display: flex;
+  flex-wrap: nowrap; /* 禁止换行 */
+  gap: 10px; /* 每个 FlowCanvas 之间的间距 */
+  padding: 10px;
+  overflow-x: auto; /* 允许水平滚动 */
+  width: 100%; /* 占满整行 */
+  box-sizing: border-box;
+  justify-content: flex-start; /* 让画板从左开始对齐 */
+  height: 800px;
+}
+
+.flows-container.centered {
+  justify-content: center; /* 居中对齐 */
+  overflow-x: hidden; /* 禁止水平滚动 */
+}
+
+
+/* FlowCanvas 样式，防止画板被挤压 */
+.flow-canvas {
+  display: inline-block;
+  flex-shrink: 0;
+  height: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  position: relative;
+}
