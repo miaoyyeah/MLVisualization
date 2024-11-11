@@ -6,7 +6,6 @@ import { addEdge, useNodesState, useEdgesState, OnConnect, useReactFlow } from '
 import '@xyflow/react/dist/style.css';
 
 interface FlowCanvasProps {
-  width: number | undefined;
   jsonPath?: string;
   canvasWidth?: number;
   rootWidth?: number;

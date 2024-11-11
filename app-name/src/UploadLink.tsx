@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 
-// 添加接口，定义组件的属性类型
+// Update interface to accept jsonPath in the onUploadSuccess callback
 interface UploadLinkProps {
-  onUploadSuccess: () => void; // 定义 onUploadSuccess 回调的类型
+  onUploadSuccess: (jsonPath: string) => void; // Define jsonPath parameter
 }
 
-// 使用 React.FC<UploadLinkProps> 来指定组件的属性类型
+// Use React.FC<UploadLinkProps> to specify component prop types
 const UploadLink: React.FC<UploadLinkProps> = ({ onUploadSuccess }) => {
   const [link, setLink] = useState('');
   const [response, setResponse] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       const res = await fetch('http://127.0.0.1:8000/api/upload-link/', {
         method: 'POST',
@@ -23,10 +23,11 @@ const UploadLink: React.FC<UploadLinkProps> = ({ onUploadSuccess }) => {
       });
 
       const data = await res.json();
+      const jsonPath = data.jsonPath; // Store jsonPath
       setResponse(data.link ? `Received link: ${data.link}` : data.message);
 
-      // 上传成功后调用 onUploadSuccess
-      onUploadSuccess();
+      // Call onUploadSuccess with jsonPath after successful upload
+      onUploadSuccess(jsonPath);
 
     } catch (error) {
       console.error("Error:", error);

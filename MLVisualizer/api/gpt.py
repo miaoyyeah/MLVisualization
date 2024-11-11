@@ -610,9 +610,12 @@ def for_chat(input):
     return ans
 
 
-
 def url_to_json(url):
     json_summary = ask(url)
     drawing_dictionary = for_chat(json_summary)
-    with open('drawing_dictionary.json', 'w') as f:
+    model_name = url.split('/')[-1].split('.')[0]
+    json_file = f'drawing_dictionary_{model_name}.json'
+    with open(json_file, 'w') as f:
         json.dump(drawing_dictionary, f, indent=4)
+    
+    return json_file
