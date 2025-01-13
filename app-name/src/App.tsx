@@ -1,12 +1,14 @@
-import { useState, useRef } from 'react';
-import FlowCanvas from './FlowCanvas';
-import UploadLink from './UploadLink';
-import FloatingPanel from './FloatingPanel';
-import { ReactFlowProvider } from '@xyflow/react';
-import './index.css';
+import { useState, useRef } from "react";
+import FlowCanvas from "./FlowCanvas";
+import UploadLink from "./UploadLink";
+import FloatingPanel from "./FloatingPanel";
+import { ReactFlowProvider } from "@xyflow/react";
+import "./index.css";
 
 export default function App() {
-  const [flows, setFlows] = useState<{ id: number; nodes: any[]; edges: any[] }[]>([]);
+  const [flows, setFlows] = useState<
+    { id: number; nodes: any[]; edges: any[] }[]
+  >([]);
   const [selectedFlowId, setSelectedFlowId] = useState<number | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -15,7 +17,12 @@ export default function App() {
     const newFlow = {
       id: Date.now(),
       nodes: [
-        { id: '1', type: 'input', data: { label: 'New Flow Node' }, position: { x: 250, y: 5 } },
+        {
+          id: "1",
+          type: "input",
+          data: { label: "New Flow Node" },
+          position: { x: 250, y: 5 },
+        },
       ],
       edges: [],
     };
@@ -37,8 +44,7 @@ export default function App() {
     if (selectedFlowId === id) {
       setSelectedFlowId(null);
     }
-  }
-
+  };
 
   return (
     <div className="app-container">
@@ -50,16 +56,21 @@ export default function App() {
       </div>
 
       {/* flows */}
-      <div ref={containerRef} className={`flows-container ${selectedFlowId ? 'centered' : ''}`}>
-          {flows
+      <div
+        ref={containerRef}
+        className={`flows-container ${selectedFlowId ? "centered" : ""}`}
+      >
+        {flows
           .filter((flow) => !selectedFlowId || flow.id === selectedFlowId)
           .map((flow) => (
             <ReactFlowProvider key={flow.id}>
               <FlowCanvas
                 jsonPath="/gpt_drawing_dictionary.json"
-                canvasWidth={selectedFlowId === flow.id || flows.length === 1 ? 1200 : 800}
+                canvasWidth={
+                  selectedFlowId === flow.id || flows.length === 1 ? 1200 : 800
+                }
                 rootWidth={600}
-                onClick={() => toggleFlowCanvasWidth(flow.id)} 
+                onClick={() => toggleFlowCanvasWidth(flow.id)}
                 onDelete={() => handleDeleteFlow(flow.id)}
               />
             </ReactFlowProvider>
