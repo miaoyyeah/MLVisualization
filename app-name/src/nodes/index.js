@@ -80,11 +80,9 @@ const generateEdges = (nodes) => {
   return edges;
 };
 
-export const getInitialNodes = async () => {
+export const getInitialNodes = (data) => {
   try {
-    const response = await fetch('/drawing_dictionary_tree.json');
-    const jsonData = await response.json();
-    const nodes = processNode(jsonData.sublayers[0].children);
+    const nodes = processNode(data.sublayers[0].children);
     const edges = generateEdges(nodes);
     return { nodes, edges };
   } catch (error) {

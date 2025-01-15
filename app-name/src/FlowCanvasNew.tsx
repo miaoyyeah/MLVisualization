@@ -9,6 +9,8 @@ import {
   Edge,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+// @ts-ignore
+import { getInitialNodes, nodeTypes } from './nodes/index'; // Import your JS functions properly
 
 
 interface FlowCanvasProps {
@@ -25,7 +27,7 @@ interface InitialNodesData {
 }
 
 const FlowCanvas: React.FC<FlowCanvasProps> = ({
-  jsonPath = '/gpt_drawing_dictionary.json',
+  jsonPath = '/vit_sample',
   canvasWidth = 800,
   rootWidth = 600,
   onClick,
@@ -42,8 +44,9 @@ const FlowCanvas: React.FC<FlowCanvasProps> = ({
       try {
         const response = await fetch(jsonPath);
         const data: InitialNodesData = await response.json();
-        setNodes(data.nodes);
-        setEdges(data.edges);
+        const { nodes, edges } = await getInitialNodes(data);
+        setNodes(nodes);
+        setEdges(edges);
       } catch (error) {
         console.error('Error loading nodes:', error);
       }

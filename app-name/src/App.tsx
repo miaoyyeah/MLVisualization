@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import FlowCanvas from "./FlowCanvas";
+import FlowCanvas from "./FlowCanvasNew";
 import UploadLink from "./UploadLink";
 import FloatingPanel from "./FloatingPanel";
 import { ReactFlowProvider } from "@xyflow/react";
@@ -65,7 +65,7 @@ export default function App() {
           .map((flow) => (
             <ReactFlowProvider key={flow.id}>
               <FlowCanvas
-                jsonPath="/gpt_drawing_dictionary.json"
+                jsonPath="/vit_sample.json"
                 canvasWidth={
                   selectedFlowId === flow.id || flows.length === 1 ? 1200 : 800
                 }

@@ -1,0 +1,148 @@
+{
+    "sublayers": [
+        {
+            "id": "ViT",
+            "label": "ViT",
+            "level": 0,
+            "children": {
+                "id": "0",
+                "label": "Root",
+                "level": 1,
+                "color": "rgba(0, 0, 0, 0)",
+                "layout": "vertical",
+                "y": 0,
+                "x": 10,
+                "children": [
+                    {
+                        "id": "0-1",
+                        "label": "Patch Embedding",
+                        "level": 2,
+                        "color": "rgba(255, 182, 193, 0.6)",
+                        "layout": "vertical",
+                        "y": 5,
+                        "x": 20,
+                        "height": 10,
+                        "post_y": 15,
+                        "width": 60
+                    },
+                    {
+                        "id": "0-2",
+                        "label": "Positional Embedding",
+                        "level": 2,
+                        "color": "rgba(51, 76, 129, 0.6)",
+                        "layout": "vertical",
+                        "y": 25,
+                        "x": 20,
+                        "height": 10,
+                        "post_y": 35,
+                        "width": 60
+                    },
+                    {
+                        "id": "0-3",
+                        "label": "Multi-Head Attention",
+                        "level": 2,
+                        "color": "rgba(167, 210, 228, 0.6)",
+                        "layout": "vertical",
+                        "y": 45,
+                        "x": 20,
+                        "children": [
+                            {
+                                "id": "0-3-1",
+                                "label": "Attention Head",
+                                "level": 3,
+                                "color": "rgba(81, 141, 139, 0.6)",
+                                "layout": "horizontal",
+                                "y": 50,
+                                "x": 30,
+                                "height": 10,
+                                "post_y": 60,
+                                "width": 40
+                            }
+                        ],
+                        "height": 20,
+                        "post_y": 65,
+                        "width": 60
+                    },
+                    {
+                        "id": "0-4",
+                        "label": "FeedForward Network",
+                        "level": 2,
+                        "color": "rgba(245, 215, 163, 0.6)",
+                        "layout": "vertical",
+                        "y": 75,
+                        "x": 20,
+                        "height": 10,
+                        "post_y": 85,
+                        "width": 60
+                    },
+                    {
+                        "id": "0-5",
+                        "label": "Transformer Block",
+                        "level": 2,
+                        "color": "rgba(213, 184, 170, 0.6)",
+                        "layout": "vertical",
+                        "y": 95,
+                        "x": 20,
+                        "children": [
+                            {
+                                "id": "0-5-1",
+                                "label": "Multi-Head Attention",
+                                "level": 3,
+                                "color": "rgba(167, 210, 228, 0.6)",
+                                "layout": "vertical",
+                                "y": 100,
+                                "x": 30,
+                                "height": 10,
+                                "post_y": 110,
+                                "width": 40
+                            },
+                            {
+                                "id": "0-5-2",
+                                "label": "FeedForward Network",
+                                "level": 3,
+                                "color": "rgba(245, 215, 163, 0.6)",
+                                "layout": "vertical",
+                                "y": 120,
+                                "x": 30,
+                                "height": 10,
+                                "post_y": 130,
+                                "width": 40
+                            }
+                        ],
+                        "height": 40,
+                        "post_y": 135,
+                        "width": 60
+                    },
+                    {
+                        "id": "0-6",
+                        "label": "LayerNorm after Blocks",
+                        "level": 2,
+                        "color": "rgba(32, 56, 136, 0.6)",
+                        "layout": "vertical",
+                        "y": 145,
+                        "x": 20,
+                        "height": 10,
+                        "post_y": 155,
+                        "width": 60
+                    },
+                    {
+                        "id": "0-7",
+                        "label": "MLP Head",
+                        "level": 2,
+                        "color": "rgba(170, 51, 121, 0.6)",
+                        "layout": "vertical",
+                        "y": 165,
+                        "x": 20,
+                        "height": 10,
+                        "post_y": 175,
+                        "width": 60
+                    }
+                ],
+                "height": 180,
+                "post_y": 180,
+                "width": 80
+            },
+            "color": "rgba(0, 0, 0, 0)"
+        }
+    ]
+}
