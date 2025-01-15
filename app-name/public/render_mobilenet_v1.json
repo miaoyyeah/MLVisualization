@@ -1,0 +1,98 @@
+{
+    "sublayers": [
+        {
+            "id": "MobileNetV1",
+            "label": "MobileNetV1",
+            "level": 0,
+            "children": {
+                "id": "0",
+                "label": "Root",
+                "level": 1,
+                "color": "rgba(0, 0, 0, 0)",
+                "layout": "vertical",
+                "y": 0,
+                "x": 10,
+                "children": [
+                    {
+                        "id": "0-1",
+                        "label": "Initial Convolution",
+                        "level": 2,
+                        "color": "rgba(0, 0, 0, 0)",
+                        "layout": "vertical",
+                        "y": 5,
+                        "x": 20,
+                        "height": 10,
+                        "post_y": 15,
+                        "width": 60
+                    },
+                    {
+                        "id": "0-2",
+                        "label": "Depthwise Separable Convolution Blocks",
+                        "level": 2,
+                        "color": "rgba(0, 0, 0, 0)",
+                        "layout": "vertical",
+                        "y": 25,
+                        "x": 20,
+                        "children": [
+                            {
+                                "id": "0-2-1",
+                                "label": "Depthwise Separable Convolution",
+                                "level": 3,
+                                "color": "rgba(0, 0, 0, 0)",
+                                "layout": "vertical",
+                                "y": 30,
+                                "x": 30,
+                                "height": 10,
+                                "post_y": 40,
+                                "width": 40
+                            }
+                        ],
+                        "height": 20,
+                        "post_y": 45,
+                        "width": 60
+                    },
+                    {
+                        "id": "0-3",
+                        "label": "Adaptive Average Pooling",
+                        "level": 2,
+                        "color": "rgba(0, 0, 0, 0)",
+                        "layout": "vertical",
+                        "y": 55,
+                        "x": 20,
+                        "height": 10,
+                        "post_y": 65,
+                        "width": 60
+                    },
+                    {
+                        "id": "0-4",
+                        "label": "Flatten Layer",
+                        "level": 2,
+                        "color": "rgba(0, 0, 0, 0)",
+                        "layout": "vertical",
+                        "y": 75,
+                        "x": 20,
+                        "height": 10,
+                        "post_y": 85,
+                        "width": 60
+                    },
+                    {
+                        "id": "0-5",
+                        "label": "Output Linear Layer",
+                        "level": 2,
+                        "color": "rgba(225, 156, 102, 0.6)",
+                        "layout": "vertical",
+                        "y": 95,
+                        "x": 20,
+                        "height": 10,
+                        "post_y": 105,
+                        "width": 60
+                    }
+                ],
+                "height": 110,
+                "post_y": 110,
+                "width": 80
+            },
+            "color": "rgba(0, 0, 0, 0)"
+        }
+    ]
+}

@@ -7,13 +7,13 @@ import "./index.css";
 
 export default function App() {
   const [flows, setFlows] = useState<
-    { id: number; nodes: any[]; edges: any[] }[]
+    { id: number; json_path:string ,nodes: any[]; edges: any[] }[]
   >([]);
   const [selectedFlowId, setSelectedFlowId] = useState<number | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleUploadSuccess = () => {
+  const handleUploadSuccess = (json_path:string) => {
     const newFlow = {
       id: Date.now(),
       nodes: [
@@ -25,6 +25,7 @@ export default function App() {
         },
       ],
       edges: [],
+      json_path: json_path
     };
 
     setFlows((prevFlows) => [...prevFlows, newFlow]);
@@ -65,7 +66,7 @@ export default function App() {
           .map((flow) => (
             <ReactFlowProvider key={flow.id}>
               <FlowCanvas
-                jsonPath="/vit_sample.json"
+                jsonPath={flow.json_path} //"/vit_sample.json"
                 canvasWidth={
                   selectedFlowId === flow.id || flows.length === 1 ? 1200 : 800
                 }

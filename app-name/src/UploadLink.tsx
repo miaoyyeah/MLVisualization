@@ -23,9 +23,10 @@ const UploadLink: React.FC<UploadLinkProps> = ({ onUploadSuccess }) => {
       });
 
       const data = await res.json();
-      const jsonPath = data.jsonPath; // Store jsonPath
+      // const jsonPath = data.jsonPath; // Store jsonPath
+      const jsonPath = link;
       setResponse(data.link ? `Received link: ${data.link}` : data.message);
-
+  
       // Call onUploadSuccess with jsonPath after successful upload
       onUploadSuccess(jsonPath);
 
